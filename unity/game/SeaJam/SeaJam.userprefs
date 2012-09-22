@@ -1,0 +1,32 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="NGUI" expanded="True">
+                <Node name="Scripts" expanded="True">
+                  <Node name="Interaction" expanded="True">
+                    <Node name="UIButton.cs" selected="True" />
+                  </Node>
+                  <Node name="Internal" expanded="True" />
+                </Node>
+              </Node>
+              <Node name="scripts" expanded="True">
+                <Node name="control" expanded="True" />
+                <Node name="map" expanded="True" />
+                <Node name="player" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
