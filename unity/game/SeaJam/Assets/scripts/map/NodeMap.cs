@@ -12,6 +12,12 @@ public struct NodeConnections
 	public List<MapNode> type4 ;
 }
 
+public struct NodeMovement
+{
+	public MapNode node ;
+	public int move ;
+}
+
 public class NodeMap {
 	
 	private Dictionary<MapNode,List<MapNode>> list1 ;
@@ -22,6 +28,8 @@ public class NodeMap {
 	private Dictionary<GameObject,MapNode> displays ;
 	
 	private List<MapNode> id_list ;
+	
+	public int nodeCount { get { return id_list.Count ; } }
 	
 	// Use this for initialization
 	void Start () {
@@ -37,6 +45,9 @@ public class NodeMap {
 		
 		displays = new Dictionary<GameObject, MapNode> () ;
 		
+		id_list = new List<MapNode> ( nodes.ToArray () ) ; // sort them to avoid relying on execution order
+		id_list.Sort ( CompareNodesByX ) ;
+		
 		for ( int i = 0; i < nodes.Count; i++ )
 		{
 			CreateMap ( nodes [ i ], nodes [ i ].nodes_1, list1 ) ;
@@ -46,9 +57,6 @@ public class NodeMap {
 			
 			displays [ nodes [ i ].display ] = nodes [ i ] ;
 		}
-		
-		id_list = new List<MapNode> ( nodes.ToArray () ) ; // sort them to avoid relying on execution order
-		id_list.Sort ( CompareNodesByX ) ;
 		
 		for ( int i = 0; i < nodes.Count; i++ )
 		{
@@ -86,7 +94,8 @@ public class NodeMap {
 	
 	private void CreateMap ( MapNode node, List<GameObject> map, Dictionary<MapNode, List<MapNode>> dict )
 	{
-		dict [ node ] = new List<MapNode> () ;
+		if ( !dict.ContainsKey ( node ) )
+			dict [ node ] = new List<MapNode> () ;
 		
 		for ( int i = 0; i < map.Count; i++ )
 		{
@@ -97,6 +106,8 @@ public class NodeMap {
 				if ( !dict.ContainsKey ( con_node ) )
 					dict [ con_node ] = new List<MapNode> () ;
 			}
+			
+			Debug.Log ( string.Format ( "connection, {0}:{1}", node.ID, con_node.ID ) ) ;
 			
 			if ( !dict [ node ].Contains ( con_node ) )
 				dict [ node ] .Add ( con_node ) ;

@@ -24,6 +24,9 @@ public class MapNode : MonoBehaviour {
 		_id = id_count++ ;
 		
 		MainGame.nodeList.Add ( this ) ;
+		
+		particlesObject = Instantiate ( particlePrefab ) as GameObject ;
+		particlesObject.transform.position = transform.position ;
 	}
 	
 	public int ID
@@ -32,13 +35,6 @@ public class MapNode : MonoBehaviour {
 		set { _id = value ; }
 	}
 	
-	// Use this for initialization
-	void Start () {
-		
-		particlesObject = Instantiate ( particlePrefab ) as GameObject ;
-		particlesObject.transform.position = transform.position ;
-		
-	}
 	
 	// Update is called once per frame
 	void Update () {

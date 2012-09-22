@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class PieceManager : MonoBehaviour
 {
 	public PlayerPiece currentPiece ;
+	public List<NodeMovement> pieceMoves ;
 	
 	private List<PlayerPiece> pieces ;
 	
