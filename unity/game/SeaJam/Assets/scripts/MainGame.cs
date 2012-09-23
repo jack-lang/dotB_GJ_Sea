@@ -7,6 +7,7 @@ public class MainGame : MonoBehaviour {
 	public static List<MapNode> nodeList = new List<MapNode> ();
 	
 	PieceManager pieceManager ;
+	NetworkManager network ;
 	public List<GameObject> piecePrefabs ;
 	
 	private NodeMap map ;
@@ -19,7 +20,8 @@ public class MainGame : MonoBehaviour {
 		Network.InitializeServer ( 1, 2000, false ) ;
 		
 		pieceManager = gameObject.AddComponent ( "PieceManager" ) as PieceManager ;
-		
+		network = gameObject.AddComponent ( "NetworkManager" ) as NetworkManager ;
+		network.Init ( true ) ;
 		map = new NodeMap () ;
 		map.Init ( nodeList ) ;
 		
