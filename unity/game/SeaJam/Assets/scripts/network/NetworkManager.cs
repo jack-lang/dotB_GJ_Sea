@@ -2,6 +2,11 @@ using UnityEngine;
 using System.Collections;
 
 public class NetworkManager : MonoBehaviour {
+	
+	NetworkView view = new NetworkView () ;
+	
+	NetworkObj obj ;
+	
 	public void Init ( bool server )
 	{
 		if ( server )
@@ -24,21 +29,48 @@ public class NetworkManager : MonoBehaviour {
 	
 	}
 	
+	void OnDestroy() {
+        if ( Network.isClient )
+		{
+			Network.Disconnect () ;
+		}
+    }
+	
 	// server
+	
+	NetworkPlayer thePlayer ;
+	
 	void OnServerInitialized() 
 	{
 	    Debug.Log ( "Server initialized and ready" ) ;
+		
+		obj = gameObject.AddComponent ( "NetworkObj" ) as NetworkObj ;
 	}
 	
-	private int playerCount = 0;
-	
-    void OnPlayerConnected(NetworkPlayer player) {
-        Debug.Log("Player " + playerCount++ + " connected from " + player.ipAddress + ":" + player.port);
+	void OnPlayerConnected(NetworkPlayer player) {
+        Debug.Log("Player " + player.guid + " connected from " + player.ipAddress + ":" + player.port);
+		
+		thePlayer = player ;
     }
+	
+	void OnPlayerDisconnected(NetworkPlayer player) {
+		if ( thePlayer == player )
+		{
+	        Debug.Log("Clean up after player " + player);
+	        Network.RemoveRPCs(player);
+	        Network.DestroyPlayerObjects(player);
+		}
+    }
+	
+	public void SetupGame ()
+	{
+		//
+	}
 	
 	// client
 	
 	void OnConnectedToServer() {
         Debug.Log("Connected to server");
+		obj = gameObject.AddComponent ( "NetworkObj" ) as NetworkObj ;
     }
 }

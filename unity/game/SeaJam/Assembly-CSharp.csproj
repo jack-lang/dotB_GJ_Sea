@@ -123,6 +123,7 @@
      <Compile Include="Assets\scripts\map\MapNode.cs" />
      <Compile Include="Assets\scripts\map\NodeMap.cs" />
      <Compile Include="Assets\scripts\network\NetworkManager.cs" />
+     <Compile Include="Assets\scripts\network\NetworkObj.cs" />
      <Compile Include="Assets\scripts\player\PieceManager.cs" />
      <Compile Include="Assets\scripts\player\PlayerPiece.cs" />
      <None Include="Assets\NGUI\ReadMe - 2.0.4c.txt" />
